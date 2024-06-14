@@ -1,23 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Tailwind CSS Boilerplate</title>
-    <script type="module" src="main.js" defer></script>
-  </head>
-  <body class="px-4 h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded shadow-md">
-      <h1 class="text-2xl font-semibold mb-4">Welcome to Tailwind CSS!</h1>
-      <p class="text-gray-700">
-        Tailwind CSS is a utility-first CSS framework that helps you quickly
-        build modern and responsive user interfaces.
-      </p>
-      <button
-        class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-      >
-        Get Started
-      </button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BotSanté</title>
+  <script type="module" src="main.js" defer></script>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+</head>
+
+<body class="bg-gray-900 text-white">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div id="sidebar" class="bg-gray-900 w-60 p-5 duration-300">
+      <div class="flex justify-between items-center mb-12 m-2">
+        <div class="flex items-center">
+          <img src="src/assets/Bot.png" alt="Logo" class="w-12 h-12 mr-3 rounded-xl">
+          <h2 class="text-xl font-semibold">BotSanté</h2>
+        </div>
+        <button id="toggleSidebar" class="text-gray-400 hover:text-white focus:outline-none">
+          <i class="fi fi-rr-sidebar"></i>
+        </button>
+      </div>
+      <ul id="botList">
+        <li class="flex items-center mb-4 cursor-pointer bot-item active hover:bg-gray-800 rounded-xl" data-bot="nutrition">
+          <img src="/src/assets/nutrition.png" alt="Nutrition Avatar" class="w-12 h-12 rounded-xl mr-2 m-2">
+          <span>Nutrition</span>
+        </li>
+        <li class="flex items-center mb-4 cursor-pointer bot-item hover:bg-gray-800 rounded-xl" data-bot="exercice">
+          <img src="/src/assets/exercise.png" alt="Exercice Avatar" class="w-12 h-12 rounded-xl mr-2 m-2">
+          <span>Exercice</span>
+        </li>
+        <li class="flex items-center mb-4 cursor-pointer bot-item hover:bg-gray-800 rounded-xl " data-bot="recette">
+          <img src="/src/assets/recipe.png" alt="Recette Avatar" class="w-12 h-12 rounded-xl mr-2 m-2">
+          <span>Recette</span>
+        </li>
+      </ul>
     </div>
-  </body>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col m-4 bg-gray-100 rounded-xl overflow-hidden">
+      <!-- Titre du bot -->
+      <div class="p-4 text-gray-900">
+        <h3 class="text-xl font-bold"><span id="activeBotName">Nutrition</span></h3>
+      </div>
+      <!-- Chat and Commands Container -->
+      <div class="flex flex-1 h-full relative">
+        <!-- Chat Container -->
+        <div class="flex flex-col flex-1">
+          <div id="chat-container" class="flex-1 overflow-auto">
+            <!-- Messages will be injected here by JavaScript -->
+            <div id="emptyState" class="flex flex-col items-center justify-center">
+              <div class="flex " id="suggestionContainer">
+                <!-- Command suggestions will be injected here by JavaScript -->
+              </div>
+            </div>
+          </div>
+          <div class="flex p-4 rounded-b-xl bg-gray-200 bottom-0 pb-20 relative">
+            <div class="flex flex-auto bottom-0 ">
+              <input id="messageInput" type="text" placeholder="Écrire un message..." class="flex-grow p-3 mr-4 border rounded-xl focus:outline-none text-black">
+              <button id="sendButton" class="bg-blue-500 text-gray-100 px-4 py-2 rounded-xl hover:bg-blue-600  focus:outline-none">
+                <i class="fi fi-rr-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Commandes Column -->
+        <div id="command-column" class="w-1/4 p-4 flex flex-col bg-gray-200 text-gray-900 border-l-gray-400 relative">
+          <div id="activeBotCommands" class="flex flex-col ">
+            <h3 class="text-xl font-bold"><span>Commandes</span></h3>
+            <ul id="commandList" class="mt-2 ">
+              <!-- Commands will be injected here -->
+            </ul>
+          </div>
+          <div class="flex flex-col mt-4">
+            <button class="w-full flex items-center p-2 mb-2 bg-gray-100 text-gray-600 hover:bg-gray-300 rounded-xl" id="helpButton">
+              <i class="fi fi-rr-interrogation mr-2"></i> Aide
+            </button>
+            <button class="w-full flex items-center p-2 mb-2 bg-gray-100 text-gray-600 hover:bg-gray-300 rounded-xl" id="diffusionButton">
+              <i class="fi fi-rr-megaphone mr-2"></i> Diffusion
+            </button>
+            <button class="w-full flex items-center p-2 mb-2 bg-gray-100 text-gray-600 hover:bg-gray-300 rounded-xl" id="clearHistory">
+              <i class="fi fi-rr-trash mr-2"></i> Vider l'historique
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
